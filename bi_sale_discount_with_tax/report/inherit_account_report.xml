@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_discount_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='total']/div/table/tr[1]" position="after" >
+            <t t-if="o.type in ('out_invoice','out_refund','out_receipt')">
+            <t t-if="o.discount_type == 'global'">
+                <tr class="border-black">
+                    <td t-if="o.discount_amt">
+                    <strong> Total Discount </strong>
+                    </td>
+                    <td class="text-right" t-if="o.discount_amt">
+                        <span t-field="o.discount_amt" />
+                    </td>
+                </tr>
+            </t>
+            <t t-if="o.discount_type == 'line'">
+                <tr class="border-black">
+                    <td t-if="o.discount_amt_line">
+                    <strong>Total Discount</strong>
+                    </td>
+                    <td class="text-right" t-if="o.discount_amt_line">
+                        <span t-field="o.discount_amt_line" />
+                    </td>
+                </tr>
+            </t>
+          </t>  
+        </xpath>
+
+        <xpath expr="//div[@id='total']/div/table/t/tr" position="replace" >
+
+        </xpath>
+
+        <xpath expr="//table[@class='table table-sm o_main_table']/thead/tr/th[6]" position="replace">
+        </xpath>
+       <xpath expr="//tbody[hasclass('invoice_tbody')]/t/tr/t[1]/td[5]" position="replace">
+
+    </xpath>
+    </template>
+</data>
+</odoo>
